@@ -1,0 +1,2 @@
+class XmlContent < ApplicationRecord
+end
