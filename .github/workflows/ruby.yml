@@ -7,13 +7,14 @@
 
 name: Ruby
 
-on: [push, pull_request]
+on:
   push:
-   paths:
-   - 'api/**'
+   branches:
+   - main
+   - release/*
   pull_request:
-    paths:
-    - 'api/**'
+    branches:
+    - main
 
 jobs:
   build:
