@@ -16,9 +16,14 @@ class XmlImporterService
 
   def parse_xml
     doc = Nokogiri::XML(open(xml_file))
+
     @parsed_data = {
       access_key: doc.css("chNFe").text
     }
-    end
+    binding.pry
+  end
+
+  def import_xml
+    
   end
 end
