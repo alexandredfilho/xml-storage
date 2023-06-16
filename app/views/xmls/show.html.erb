@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @xml %>
+
+<div>
+  <%= link_to "Edit this xml", edit_xml_path(@xml) %> |
+  <%= link_to "Back to xmls", xmls_path %>
+
+  <%= button_to "Destroy this xml", @xml, method: :delete %>
+</div>

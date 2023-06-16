@@ -10,21 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_09_203407) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_15_001919) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "companies", force: :cascade do |t|
-    t.string "company_name"
-    t.string "cnpj"
+  create_table "stores", force: :cascade do |t|
+    t.string "access_key"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "xml_contents", force: :cascade do |t|
-    t.string "company_name"
-    t.string "cnpj"
+  create_table "xmls", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "store_id", null: false
+    t.index ["store_id"], name: "index_xmls_on_store_id"
   end
+
+  add_foreign_key "xmls", "stores"
 end

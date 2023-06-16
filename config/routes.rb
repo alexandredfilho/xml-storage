@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
- root "welcome#index"
+  root "welcome#index"
 
- resources :xml_contents
+  resources :xmls
+  resources :stores, only: [:index]
 end

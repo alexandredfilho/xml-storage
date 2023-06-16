@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Xmls</h1>
+
+<div id="xmls">
+  <% @xmls.each do |xml| %>
+    <%= render xml %>
+    <p>
+      <%= link_to "Show this xml", xml %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New xml", new_xml_path %>
