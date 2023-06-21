@@ -7,7 +7,11 @@ class XmlImporterService
 
   def execute
     parse_xml
-    import_xml
+    import_data
+  end
+
+  def errors
+    @fetch_errors
   end
 
   private
@@ -20,10 +24,16 @@ class XmlImporterService
     @parsed_data = {
       access_key: doc.css("chNFe").text
     }
-    binding.pry
   end
 
-  def import_xml
-    
+  def import_data
+    Xml.transaction do
+      begin
+        Xml.create!(@parsed_data)
+      rescue ActiveRecord::RecordInvalid => e
+        @fetch_errors << e
+        raise ActiveRecord::Rollback
+      end
+    end
   end
 end
