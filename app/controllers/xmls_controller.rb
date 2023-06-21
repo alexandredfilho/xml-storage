@@ -12,33 +12,17 @@ class XmlsController < ApplicationController
     @xml = Xml.new
   end
 
-  def edit
-  end
-
   def create
     @xml =
     file = xml_params[:xml_file]
-    import_xml = ::XmlImporterService.new(file)
-    import_xml.execute
+    import_xml = ::XmlImporterService.new(file).execute
 
     if import_xml.errors.any?
-      flash[:notice] = "Error to process the XML file: #{import_xml.errors.join(', ')}"
+      flash[:flash] = "Error to process the XML file: #{import_xml.errors.join(', ')}"
       redirect_to :new
     else
       flash[:notice] = "XML file was successfully imported"
-      redirect_to welcome_path
-    end
-  end
-
-  def update
-    respond_to do |format|
-      if @xml.update(xml_params)
-        format.html { redirect_to xml_url(@xml), notice: "Xml was successfully updated." }
-        format.json { render :show, status: :ok, location: @xml }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @xml.errors, status: :unprocessable_entity }
-      end
+      redirect_to root_path
     end
   end
 
@@ -52,6 +36,7 @@ class XmlsController < ApplicationController
   end
 
   private
+
     def set_xml
       @xml = Xml.find(params[:id])
     end
