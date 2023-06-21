@@ -4,7 +4,8 @@
 
 <div id="xmls">
   <% @xmls.each do |xml| %>
-    <%= render xml %>
+    <p>Imported at:</p>
+    <%= xml.created_at.to_date %>
     <p>
       <%= link_to "Show this xml", xml %>
     </p>

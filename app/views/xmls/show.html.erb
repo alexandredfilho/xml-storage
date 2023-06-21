@@ -1,9 +1,8 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @xml %>
-
+  <ht2>Access Key</ht2>
+  <p><%= @xml.access_key %></p>
 <div>
-  <%= link_to "Edit this xml", edit_xml_path(@xml) %> |
   <%= link_to "Back to xmls", xmls_path %>
 
   <%= button_to "Destroy this xml", @xml, method: :delete %>
