@@ -25,6 +25,7 @@ class XmlImporterService
     recipient = doc.at('dest')
 
     @parsed_data = {
+      operation_type: doc.css('natOp').text,
       key: doc.css('chNFe').text,
       issuer_name: fetch_company_name(issuer),
       issuer_cnpj: fetch_company_cnpj(issuer),
