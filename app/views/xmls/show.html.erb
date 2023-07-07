@@ -1,7 +1,23 @@
 <p style="color: green"><%= notice %></p>
 
-  <ht2>Access Key</ht2>
-  <p><%= @xml.key %></p>
+  <h2>Invoice details</h2>
+  <p>Access Key: <%= @xml.key %></p>
+  <p>Invoice Number: <%= @xml.invoice %></p>
+
+  <h2>Issuer</h2>
+  <p>Issuer Name: <%= @xml.issuer_name %></p>
+  <p>Issuer CNPJ: <%= @xml.issuer_cnpj %></p>
+  <p>Issuer IE: <%= @xml.issuer_ie %></p>
+
+  <h2>Recipient</h2>
+  <p>Recipient Name: <%= @xml.recipient_name %></p>
+  <p>Recipient CNPJ: <%= @xml.recipient_cnpj %></p>
+  <p>Recipient IE: <%= @xml.recipient_ie %></p>
+
+  <h2>Tax</h2>
+  <p>ICMS: <%= @xml.icms %>%</p>
+  <p>IPI: <%= @xml.ipi %>%</p>
+
 <div>
   <%= link_to "Back to xmls", xmls_path %>
 
