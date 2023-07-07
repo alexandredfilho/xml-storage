@@ -10,19 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_05_012016) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_07_214659) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "xmls", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "company_name"
+    t.string "recipient_name"
     t.string "invoice"
-    t.string "cnpj"
+    t.string "recipient_cnpj"
     t.float "icms"
     t.float "ipi"
     t.string "key"
+    t.string "issuer_name"
+    t.string "issuer_cnpj"
+    t.string "issuer_ie"
+    t.string "recipient_ie"
   end
 
 end
