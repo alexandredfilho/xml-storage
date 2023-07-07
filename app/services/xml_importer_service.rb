@@ -21,14 +21,33 @@ class XmlImporterService
   def parse_xml
     doc = Nokogiri::XML(open(xml_file))
 
+    issuer = doc.at('emit')
+    recipient = doc.at('dest')
+
     @parsed_data = {
       key: doc.css('chNFe').text,
-      company_name: build_company_name_dest(doc.at('dest')),
-      cnpj: build_cnpj_dest(doc.at('dest')),
+      issuer_name: fetch_company_name(issuer),
+      issuer_cnpj: fetch_company_cnpj(issuer),
+      issuer_ie: fetch_company_ie(issuer),
+      recipient_name: fetch_company_name(recipient),
+      recipient_cnpj: fetch_company_cnpj(recipient),
+      recipient_ie: fetch_company_ie(recipient),
       invoice: doc.css('cNF').text,
       ipi: fetch_ipi(doc.at('imposto', 'IPI')),
       icms: fetch_icms(doc.at('imposto', 'ICMS', 'ICMS00'))
     }
+  end
+
+  def fetch_company_name(xml_row)
+    xml_row.css('xNome').text
+  end
+
+  def fetch_company_cnpj(xml_row)
+    xml_row.css('CNPJ').text
+  end
+
+  def fetch_company_ie(xml_row)
+    xml_row.css('IE').text
   end
 
   def fetch_icms(xml_row)
@@ -43,14 +62,6 @@ class XmlImporterService
     .css('cEnq')
     .text
     .to_f
-  end
-
-  def build_company_name_dest(xml_row)
-    xml_row.css('xNome').text
-  end
-
-  def build_cnpj_dest(xml_row)
-    xml_row.css('CNPJ').text
   end
 
   def import_data
