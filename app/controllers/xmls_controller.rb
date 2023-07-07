@@ -22,7 +22,7 @@ class XmlsController < ApplicationController
       redirect_to :new
     else
       flash[:notice] = "XML file was successfully imported"
-      redirect_to root_path
+      redirect_to xmls_path
     end
   end
 
