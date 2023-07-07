@@ -32,7 +32,6 @@ class XmlImporterService
   end
 
   def fetch_icms(xml_row)
-    binding.pry
     xml_row
     .css('vICMS')
     .text
